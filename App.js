@@ -1,20 +1,20 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-
+import { useFonts } from "expo-font";
+import HomeScreen from './src/screens/HomeScreen';
+import { LogBox } from 'react-native';
+import MenuScreens from "./src/screens/MenuScreens";
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+
+  const [loaded] = useFonts({
+    Bold: require("./src/fonts/NunitoSans-Bold.ttf"),
+    Regular: require("./src/fonts/NunitoSans-Regular.ttf"),
+    SemiBold:require("./src/fonts/NunitoSans-SemiBold.ttf"),
+  
+  });
+  if (!loaded) {
+    LogBox.ignoreLogs(['Warning: ...']);
+    LogBox.ignoreAllLogs();
+    return false;
+  }
+  return <HomeScreen />
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
