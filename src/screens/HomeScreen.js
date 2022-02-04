@@ -135,67 +135,19 @@ export default function HomeScreen() {
       type={item.type}
     />
   );
-  return (
-    <SafeAreaView style={styles.container}>
-      <StatusBar
-        barStyle="dark-content"
-        hidden={false}
-        backgroundColor="#fff"
-      />
-      <ScrollView
-        showsVerticalScrollIndicator={false}
-        contentContainerStyle={{ paddingBottom: 50 }}
-      >
-        <SearchHeader />
 
-        <View style={styles.ongoingSalesContainer}>
-          <OnGoingSales
-            image={require("../icons/sales.png")}
-            title="Ongoing Sales"
-            subtitle="10"
-          />
-          <OnGoingSales
-            image={require("../icons/orders.png")}
-            title="Ongoing Orders"
-            subtitle="4"
-          />
-        </View>
 
-        <View style={styles.categoreisMainContainer}>
-          <View style={styles.categoreisSubContainer}>
-            <Text style={styles.categoriesText}>Categories</Text>
+  const BottomFlatlist = ()=>
 
-            <Text style={styles.seeAllText}>See All</Text>
-          </View>
-
-          <View style={styles.CategoriesfirstRow}>
-            <Categories title="Graphics & Design" />
-            <Categories title="Video & Animation" />
-          </View>
-          <View style={styles.CategoriesfirstRow}>
-            <Categories title="Programming & Tech" />
-            <Categories title="Writing" />
-          </View>
-        </View>
-
-        <View style={styles.myFixesMainContainer}>
-          <Text style={styles.fixesText}>My Fixes</Text>
-
-          <View>
-            <FlatList
-              contentContainerStyle={{ marginTop: 32 }}
-              data={MyfixesData}
-              renderItem={renderItemFixes}
-              keyExtractor={(item) => item.id}
-            />
-          </View>
-        </View>
-
-        <View style={styles.myFixesMainContainer}>
+  {
+    return (
+    <View>
+  <View style={styles.myFixesMainContainer}>
           <Text style={styles.fixesText}>Featured</Text>
 
           <View>
             <FlatList
+             nestedScrollEnabled={false}
               contentContainerStyle={{ marginTop: 32 }}
               data={FeaturedData}
               renderItem={renderItemFeatures}
@@ -207,7 +159,81 @@ export default function HomeScreen() {
         <TouchableOpacity style={styles.seeMoreButton}>
           <Text style={styles.seeMoreText}>+ See More</Text>
         </TouchableOpacity>
-      </ScrollView>
+    </View>
+    )}
+
+    const TopFlatlist = ()=>
+
+  {
+    return (
+    <View>
+       <SearchHeader />
+
+<View style={styles.ongoingSalesContainer}>
+  <OnGoingSales
+    image={require("../icons/sales.png")}
+    title="Ongoing Sales"
+    subtitle="10"
+  />
+  <OnGoingSales
+    image={require("../icons/orders.png")}
+    title="Ongoing Orders"
+    subtitle="4"
+  />
+</View>
+
+<View style={styles.categoreisMainContainer}>
+  <View style={styles.categoreisSubContainer}>
+    <Text style={styles.categoriesText}>Categories</Text>
+
+    <Text style={styles.seeAllText}>See All</Text>
+  </View>
+
+  <View style={styles.CategoriesfirstRow}>
+    <Categories title="Graphics & Design" />
+    <Categories title="Video & Animation" />
+  </View>
+  <View style={styles.CategoriesfirstRow}>
+    <Categories title="Programming & Tech" />
+    <Categories title="Writing" />
+  </View>
+</View>
+<Text style={styles.fixesText}>My Fixes</Text>
+    </View>
+    )}
+  return (
+    <SafeAreaView style={styles.container}>
+      <StatusBar
+        barStyle="dark-content"
+        hidden={false}
+        backgroundColor="#fff"
+      />
+      {/* <ScrollView
+    nestedScrollEnabled={false}
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={{ paddingBottom: 50 }}
+      > */}
+       
+
+        <View style={styles.myFixesMainContainer}>
+          
+
+          <View>
+            <FlatList
+            showsVerticalScrollIndicator={false}
+              ListHeaderComponent={<TopFlatlist />}
+              nestedScrollEnabled={false}
+              contentContainerStyle={{ marginTop: 32,paddingBottom:100, }}
+              data={MyfixesData}
+              renderItem={renderItemFixes}
+              keyExtractor={(item) => item.id}
+              ListFooterComponent={<BottomFlatlist />}
+            />
+          </View>
+        </View>
+
+      
+      {/* </ScrollView> */}
     </SafeAreaView>
   );
 }
@@ -254,6 +280,7 @@ const styles = StyleSheet.create({
     fontFamily: "SemiBold",
     marginTop: 25,
     marginHorizontal: 18,
+    marginBottom:20,
   },
   seeMoreButton: {
     width: 80,

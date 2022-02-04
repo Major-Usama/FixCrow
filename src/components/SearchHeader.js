@@ -9,12 +9,18 @@ import {
   Modal,
   Pressable,
   Platform,
+  ScrollView,
 } from "react-native";
 import React, { useState } from "react";
-import { Entypo } from "@expo/vector-icons";
 import Slider from "@react-native-community/slider";
 import Checkbox from "expo-checkbox";
+import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
+import {
+  heightPercentageToDP,
+  widthPercentageToDP,
+} from "react-native-responsive-screen";
 const WIDTH = Dimensions.get("window").width;
+const HEIGHT = Dimensions.get("window").height;
 
 export default function SearchHeader() {
   const [search, setSearch] = useState("");
@@ -72,12 +78,13 @@ export default function SearchHeader() {
           <View style={styles.modalView}>
             <View style={styles.modalHeader}>
               <Text style={styles.filterResultText}>Filter Results</Text>
-              <Entypo
-                onPress={() => setModalVisible(!modalVisible)}
-                name="cross"
-                size={32}
-                color="lightgray"
-              />
+
+              <TouchableOpacity onPress={() => setModalVisible(!modalVisible)}>
+                <Image
+                  style={{ width: 30, height: 30 }}
+                  source={require("../images/cross.png")}
+                />
+              </TouchableOpacity>
             </View>
 
             <View>
@@ -95,7 +102,11 @@ export default function SearchHeader() {
                   maximumValue={50000}
                   minimumTrackTintColor="#5377B1"
                   maximumTrackTintColor="#C4C4C4"
-                  thumbImage={Platform.OS==='android'?require("../icons/thumb.png"):""} 
+                  thumbImage={
+                    Platform.OS === "android"
+                      ? require("../icons/thumb.png")
+                      : ""
+                  }
                 />
 
                 <Text style={styles.maximumText}>Maximum</Text>
@@ -191,17 +202,17 @@ const styles = StyleSheet.create({
     height: 50,
     backgroundColor: "#fff",
     shadowColor: "#000",
-shadowOffset: {
-	width: 0,
-	height: 1,
-},
-shadowOpacity: 0.20,
-shadowRadius: 1.41,
+    shadowOffset: {
+      width: 0,
+      height: 1,
+    },
+    shadowOpacity: 0.2,
+    shadowRadius: 1.41,
 
-elevation: 2,
+    elevation: 2,
 
     elevation: 5,
-    marginTop: 60,
+    marginTop: 40,
     flexDirection: "row",
     alignItems: "center",
   },
@@ -231,12 +242,12 @@ elevation: 2,
   },
   // Modal
   centeredView: {
-    marginTop: 120,
+    marginTop: RFValue(50),
   },
   modalView: {
     alignSelf: "center",
-    width: 343,
-    padding: 1,
+    width: widthPercentageToDP("90%"),
+    paddingBottom:RFValue(20),
     backgroundColor: "white",
     borderRadius: 10,
     shadowColor: "#000",
@@ -248,11 +259,11 @@ elevation: 2,
     shadowRadius: 4,
     elevation: 5,
   },
-  button: {
-    borderRadius: 20,
-    padding: 10,
-    elevation: 2,
-  },
+  // button: {
+  //   borderRadius: 20,
+  //   padding: 10,
+  //   elevation: 2,
+  // },
   buttonOpen: {
     backgroundColor: "#F194FF",
   },
@@ -265,74 +276,74 @@ elevation: 2,
     textAlign: "center",
   },
   modalText: {
-    marginBottom: 15,
+    marginBottom: RFValue(14),
     textAlign: "center",
   },
   filterResultText: {
     color: "#33383F",
-    fontSize: 23,
+    fontSize: RFValue(22),
     fontFamily: "SemiBold",
   },
   modalHeader: {
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-    paddingHorizontal: 24,
-    marginTop: 45,
+    paddingHorizontal: RFValue(24),
+    marginTop: RFValue(20),
   },
   priceText: {
-    fontSize: 23,
+    fontSize: RFValue(22),
     color: "#33383F",
     fontFamily: "Regular",
-    marginTop: 23,
-    marginHorizontal: 25,
+    marginTop: RFValue(23),
+    marginHorizontal: RFValue(25),
   },
   sliderValue: {
-    fontSize: 10,
+    fontSize: RFValue(10),
     color: "#808080",
     fontFamily: "Bold",
-    marginHorizontal: 50,
-    marginTop: 20,
+    marginHorizontal: RFValue(50),
+    marginTop: RFValue(20),
   },
   maximumText: {
-    fontSize: 15,
+    fontSize: RFValue(14),
     color: "#808080",
     fontFamily: "Regular",
   },
   sliderWrapper: {
     flexDirection: "row",
-    marginHorizontal: 10,
+    marginHorizontal: RFValue(10),
   },
   checkBoxesContainer: {},
   useshippingAddressContainer: {
     flexDirection: "row",
     alignItems: "center",
-    marginLeft: 20,
+    marginLeft: RFValue(18),
   },
   checkbox: {
-    margin: 8,
+    margin: RFValue(8),
     borderRadius: 4,
   },
 
   useshippingText: {
-    fontSize: 14,
+    fontSize: RFValue(14),
     fontFamily: "Regular",
     color: "#808080",
     marginLeft: 8,
   },
   filterButton: {
-    width: WIDTH - 100,
-    height: 45,
+    width: widthPercentageToDP("78%"),
+    height: RFValue(42),
     backgroundColor: "#1CC88A",
     borderRadius: 4,
     alignSelf: "center",
-    marginTop: 40,
-    marginBottom: 20,
+    marginTop: 25,
     justifyContent: "center",
     alignItems: "center",
+    
   },
   filterText: {
-    fontSize: 14,
+    fontSize: RFValue(14),
     fontFamily: "SemiBold",
     color: "#fff",
   },

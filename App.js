@@ -11,8 +11,8 @@ export default function App() {
   
   });
   if (!loaded) {
-    LogBox.ignoreLogs(['Warning: ...']);
-    LogBox.ignoreAllLogs();
+    // LogBox.ignoreLogs(['Warning: ...']);
+    // LogBox.ignoreAllLogs();
     return false;
   }
   return <HomeScreen />

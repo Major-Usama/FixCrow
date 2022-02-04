@@ -8,7 +8,9 @@
     "eject": "expo eject"
   },
   "dependencies": {
+    "@react-native-community/checkbox": "^0.5.9",
     "@react-native-community/slider": "^4.2.0",
+    "add": "^2.0.6",
     "expo": "~44.0.0",
     "expo-checkbox": "~2.0.0",
     "expo-font": "~10.0.4",
@@ -16,8 +18,11 @@
     "react": "17.0.1",
     "react-dom": "17.0.1",
     "react-native": "0.64.3",
+    "react-native-responsive-fontsize": "^0.5.1",
+    "react-native-responsive-screen": "^1.4.2",
     "react-native-slider-text": "^0.0.10",
-    "react-native-web": "0.17.1"
+    "react-native-web": "0.17.1",
+    "yarn": "^1.22.17"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9"
